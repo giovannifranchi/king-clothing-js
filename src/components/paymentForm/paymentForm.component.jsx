@@ -13,7 +13,6 @@ const CARD_ELEMENT_OPTIONS = {
         color: "#32325d",
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
-        position: 'relative',
         fontSize: "20px",
         "::placeholder": {
           color: "#aab7c4"
@@ -65,6 +64,7 @@ const PaymentForm = () => {
             }
         })
 
+        console.log(paymentResult);
         setIsPaymentLoading(false);
 
         if(paymentResult.error){
