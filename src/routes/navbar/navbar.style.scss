@@ -1,0 +1,17 @@
+.ms-navbar {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.8); 
+    box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.8);
+}
+
+.nav-link {
+    &.active{
+        text-decoration: underline;
+    }
+    cursor: pointer;
+}

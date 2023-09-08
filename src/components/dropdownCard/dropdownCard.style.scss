@@ -1,0 +1,9 @@
+.cart-card-button {
+    background-color: #fff;
+    border-radius: 20%;
+    border: 0;
+    &:hover{
+        background-color: darken($color: #fff, $amount: 20%);
+        color: #fff;
+    }
+}
