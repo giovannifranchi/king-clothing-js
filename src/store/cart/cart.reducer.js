@@ -3,7 +3,8 @@ import { CART_ACTION_TYPES } from "./cart.types";
 const INITIAL_STATE = {
     isOpen: false,
     cartItems: {},
-    totalAmount: 0
+    totalAmount: 0,
+    showConfetti: false
 };
 
 
@@ -21,6 +22,8 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             return { ...state, cartItems: payload};
         case CART_ACTION_TYPES.UPDATE_TOTAL_AMOUNT:
             return {...state, totalAmount:payload};
+        case CART_ACTION_TYPES.SHOW_CONFETTI:
+            return {...state, showConfetti: payload};
         default:
             return state;
     }

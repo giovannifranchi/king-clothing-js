@@ -8,6 +8,11 @@ export const selectIsCartOpen = createSelector(
     (cartSlice) => cartSlice.isOpen
 );
 
+export const selectConfetti = createSelector(
+    [selectCartReducer],
+    (cartSlice)=> cartSlice.showConfetti
+)
+
 export const selectAllItemsToArray = createSelector(
     [selectCartReducer],
     (cartSlice) => {

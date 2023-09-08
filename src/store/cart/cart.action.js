@@ -63,3 +63,5 @@ export const updateTotal = (item, totalAmount, cart)=>{
     const newTotalAmount = totalAmount - cart.cartItems[item.id].itemAmount;
     return createAction(CART_ACTION_TYPES.UPDATE_TOTAL_AMOUNT, newTotalAmount);
 }
+
+export const showConfetti = (boolean)=> createAction(CART_ACTION_TYPES.SHOW_CONFETTI, boolean);
