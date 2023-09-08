@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/button.component";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
     displayName: '',
@@ -20,12 +21,14 @@ const SignUpForm = () => {
         setFormField({ ...formField, [name]: value });
     }
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const { password, confirmPassword, email, displayName } = formField;
         if (password !== confirmPassword) return;
         await createAuthUserWithEmailAndPassword(email, password, displayName);
-        setFormField(defaultFormFields);
+        navigate('/shop');
     }
 
 
