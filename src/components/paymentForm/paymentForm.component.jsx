@@ -6,6 +6,26 @@ import { useSelector } from 'react-redux';
 import { selectTotalPrice } from '../../store/cart/cart.selector';
 import { selectCurrentUser } from '../../store/user/user.selector';
 
+
+const CARD_ELEMENT_OPTIONS = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: "antialiased",
+        position: 'relative',
+        fontSize: "20px",
+        "::placeholder": {
+          color: "#aab7c4"
+        }
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a"
+      }
+    }
+  };
+
 const PaymentForm = () => {
 
     const stripe = useStripe();
@@ -58,7 +78,9 @@ const PaymentForm = () => {
 
     return (
         <form onSubmit={paymentHandler}>
-            <CardElement />
+            <div className='payment-form w-50'>
+                <CardElement options={CARD_ELEMENT_OPTIONS} />
+            </div>
             <Button isLoading={isPyamentLoading} buttonType='inverted' text='buy now' />
         </form>
     )
