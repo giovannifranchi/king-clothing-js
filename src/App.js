@@ -11,6 +11,7 @@ import Shop from './routes/shop/shop.component';
 import Contacts from './routes/contacts/contacts.component';
 import Authentication from './routes/authentication/authentication.component';
 import Checkout from './routes/checkout/checkout.component';
+import ProtectedRoute from './routes/protectedRoute.component';
 
 const App = ()=> {
 
@@ -29,11 +30,15 @@ const App = ()=> {
   return (
     <Routes>
       <Route path='/' element={<NavBar/>}>
-        <Route index element={<Home/>}/>
-        <Route path='shop/*' element={<Shop/>}/>
-        <Route path='signin' element={<Authentication/>}/>
-        <Route path='contacts' element={<Contacts/>}/>
-        <Route path='checkout' element={<Checkout/>} />
+        <Route index element={<Home />} />
+        <Route path='shop/*' element={<Shop />} />
+        <Route path='signin' element={<Authentication />} />
+        <Route path='contacts' element={<Contacts />} />
+        <Route path='checkout' element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        } />
       </Route>
     </Routes>
   )

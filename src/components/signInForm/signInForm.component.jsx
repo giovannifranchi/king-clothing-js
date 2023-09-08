@@ -3,6 +3,9 @@ import { signInWithGooglePopup, createUserDocumentFromAuth,  } from '../../utils
 import { signInWithCredentials } from "../../utils/firebase/firebase.utils";
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/button.component";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectItemsTotalAmount } from "../../store/cart/cart.selector";
 
 
 const defaultFormField = {
@@ -11,6 +14,11 @@ const defaultFormField = {
 }
 
 const SignInForm = ()=> {
+
+    const itemsAmount  = useSelector(selectItemsTotalAmount);
+
+    const navigate = useNavigate();
+
     const [formField, setFormField] = useState(defaultFormField);
 
     const {email, password} = formField;
@@ -23,6 +31,7 @@ const SignInForm = ()=> {
     const logGoogleUser = async () => {
         const { user } = await signInWithGooglePopup();
         await createUserDocumentFromAuth(user);
+        navigate(`${itemsAmount ? '/checkout' : '/shop'}`);
     }
 
     const handleSubmit = async (event)=>{
@@ -30,6 +39,7 @@ const SignInForm = ()=> {
         if(!email.trim() || !password) return alert('you need to insert your credentials');
         try {
             await signInWithCredentials(email, password);
+            navigate(`${itemsAmount ? '/checkout' : '/shop'}`);
         } catch (error) {
             console.log(error);
         }
