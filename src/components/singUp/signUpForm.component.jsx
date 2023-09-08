@@ -3,6 +3,8 @@ import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebas
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/button.component";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectAllItemsToArray } from "../../store/cart/cart.selector";
 
 const defaultFormFields = {
     displayName: '',
@@ -12,6 +14,8 @@ const defaultFormFields = {
 }
 
 const SignUpForm = () => {
+
+    const itemsAmount = useSelector(selectAllItemsToArray);
 
     const [formField, setFormField] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formField;
@@ -28,7 +32,7 @@ const SignUpForm = () => {
         const { password, confirmPassword, email, displayName } = formField;
         if (password !== confirmPassword) return;
         await createAuthUserWithEmailAndPassword(email, password, displayName);
-        navigate('/shop');
+        navigate(`${itemsAmount ? '/checkout' : '/shop'}`);
     }
 
 
